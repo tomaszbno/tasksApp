@@ -49,11 +49,10 @@ function App() {
       </button>
       <ul>
         {tasks.map(task => (
-          <><li key= { task.id} className="taskItem">
-            <button className="taskBtn" onClick={() => toggleDone(task.id)}></button>
-            {task.done ? <s>{task.text}</s> : <span>{task.text}</span>}
+          <li key= { task.id} className="taskItem">
+              <button className="taskBtn" onClick={() => toggleDone(task.id)}></button>
+              {task.done ? <s>{task.text}</s> : <span>{task.text}</span>}
             </li>
-          </>
         ))}
       </ul>
     </div>
