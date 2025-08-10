@@ -15,16 +15,17 @@ function App() {
 
   //Updatea la lista de tareas
   const updateTasks = (taskToAdd) => {
-    if (taskToAdd.trim() !== "") { //chequea que la tarea no esté vacía
-      const newTasks = [...tasks]
-      newTasks.push({
-        id: newTasks.length + 1,
+    if (taskToAdd.trim() === "") return //chequea que la tarea no esté vacía
+    setTasks([
+      ...tasks,
+      {
+        id: tasks.length + 1,
         text: taskToAdd,
         done: false
-      });
-      setTasks(newTasks);
-      setTaskToAdd("");
-    }
+      }
+    ])
+    setTaskToAdd("");
+  
   }
   //Marca como completa o incompleta
   const toggleDone = (id) => {
