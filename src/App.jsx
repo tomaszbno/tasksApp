@@ -29,11 +29,10 @@ function App() {
   }
   //Marca como completa o incompleta
   const toggleDone = (id) => {
-    const newTasks = [...tasks]
-    newTasks.find(task => task.id === id).done = !newTasks.find(task => task.id === id).done
-    setTasks(newTasks);
-    console.log(newTasks.find(task => task.id === id).done)
-  }
+    setTasks(tasks.map(task =>
+      task.id === id ? { ...task, done: !task.done } : task
+    ));
+  };
 
 // La parte de fuera
 
