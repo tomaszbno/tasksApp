@@ -1,48 +1,52 @@
-import { useState } from 'react'
+import { useState , useEffect } from 'react'
+import { nanoid } from 'nanoid'
 import './App.css'
 
 
 function App() {
   // Estado para las tareas
   const [tasks, setTasks] = useState([{
-    id: 1,
+    id: nanoid(),
     text: 'Learning React',
     done: false
   }]);
-
+  //muestra el array task cada vez que se actualiza (por consola)
+  useEffect(() => {
+    console.log(tasks);
+  }, [tasks]);
+  
+  const counter = () => {
+    if(tasks.length >= 1){
+      return `Completed tasks: ${tasks.filter(task => task.done).length} / ${tasks.length}`
+    }else return "No hay tareas 😊"
+  }
   //Estado para el input
   const [taskToAdd, setTaskToAdd] = useState("");
 
   //Updatea la lista de tareas
   const updateTasks = (taskToAdd) => {
     if (taskToAdd.trim() === "") return //chequea que la tarea no esté vacía
-    setTasks([
-      ...tasks,
+    setTasks(prevTasks => [
+      ...prevTasks,
       {
-        id: tasks.length + 1,
-        text: taskToAdd,
+        id: nanoid(),
+        text: taskToAdd.trim(),
         done: false
       }
     ])
     setTaskToAdd("");
-  
   }
   //Marca como completa o incompleta
   const toggleDone = (id) => {
-    setTasks(tasks.map(task =>
+    setTasks(prevTasks => prevTasks.map(task =>
       task.id === id ? { ...task, done: !task.done } : task
     ));
   };
   //Funcion para eliminar una tarea
-  const deleteTask = (id) => { 
-    setTasks(tasks.filter(task => task.id !== id))
+  const deleteTask = (id) => {
+    setTasks( prevTasks => prevTasks.filter(task => task.id !== id ))
   }
 
-  const counter = () => {
-    if(tasks.length >= 1){
-      return `Completed tasks: ${tasks.filter(task => task.done).length} / ${tasks.length}`
-    }
-  }
 // La parte de fuera
 
   return (
