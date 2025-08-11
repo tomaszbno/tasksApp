@@ -33,26 +33,39 @@ function App() {
       task.id === id ? { ...task, done: !task.done } : task
     ));
   };
+  //Funcion para eliminar una tarea
+  const deleteTask = (id) => { 
+    setTasks(tasks.filter(task => task.id !== id))
+  }
 
+  const counter = () => {
+    if(tasks.length >= 1){
+      return `Completed tasks: ${tasks.filter(task => task.done).length} / ${tasks.length}`
+    }
+  }
 // La parte de fuera
 
   return (
-    <div>
-      <input
-        type="text"
-        value={taskToAdd}
-        placeholder="Add a new task"
-        onChange={e => setTaskToAdd(e.target.value)}/>
-      <button
-        onClick={() => updateTasks(taskToAdd)}>
-        Add Task
-      </button>
+    <div className= "appContainer">
+      <small>{counter()}</small>
+      <div className="inputRow">
+        <input
+          type="text"
+          value={taskToAdd}
+          placeholder="Add a new task"
+          onChange={e => setTaskToAdd(e.target.value)}/>
+        <button
+          onClick={() => updateTasks(taskToAdd)}>
+          Add Task
+        </button>
+      </div>
       <ul>
         {tasks.map(task => (
-          <li key= { task.id} className="taskItem">
+          <li key={task.id} className="taskItem">
               <button className="taskBtn" onClick={() => toggleDone(task.id)}></button>
               {task.done ? <s>{task.text}</s> : <span>{task.text}</span>}
-            </li>
+              <button className="delTask" onClick={() => deleteTask(task.id)}>delete</button>
+          </li>
         ))}
       </ul>
     </div>
