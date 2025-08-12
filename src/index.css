@@ -35,6 +35,16 @@ body {
   min-width: 320px; /* Ajusta según tu preferencia */
   margin-bottom: 12px;
 }
+.filters{
+  display: flex;
+  gap: 8px;
+}
+.filters button {
+  background-color: #feffdf;
+  border: 2px solid #97cba9;
+  padding: 10px;
+}
+
 
 button {
   border-radius: 8px;
@@ -63,6 +73,7 @@ input{
   margin-right: 10px;
   font-size: 1em;
   transition-duration: 0.3s;
+  max-height: 11px;
 }
 input:focus {
   border-color: #97cba9;
@@ -95,8 +106,31 @@ s{
   color:#d67878;
   min-width: 70px;
 }
+.editTask{
+  background-color: transparent;
+  border: 2px solid #ababab;
+  border-radius: 15px;
+  font-size: 12px;
+  color:#ababab;
+  min-width: 70px;
+}
 small{
   opacity: 50%;
   display: block;
   margin-bottom: 6px;
+}
+.saveTask{
+  font-size: 14px;
+  min-width: 70px;
+}
+.cancelEditTask{
+  font-size: 14px;
+  min-width: 85px;
+  background-color: transparent;
+  border: 2px solid #d67878;
+  color: #d67878
+}
+.cancelEditTask:hover{
+  border: 2px solid #efa4a4;
+  color:#efa4a4;
 }
